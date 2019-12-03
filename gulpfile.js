@@ -8,8 +8,8 @@ let gulp = require('gulp'),
     imagemin = require('gulp-imagemin');
 gulp.task('sass',()=>{
     gulp.src('./src/scss/*.scss')
-    .pipe(sass({outputStyle:'expanded'}))
     //.pipe(cssnano())
+    .pipe(sass({outputStyle:'expanded'}))
     .pipe(rename({suffix : '.min'}))
     .pipe(gulp.dest('./dist/css'))
 })  
@@ -50,13 +50,13 @@ gulp.task('cart',()=>{
     .pipe(gulp.dest('./dist/img/cart'));
 })  
 
-// gulp.task('js',()=>{
-//     gulp.src('./src/js/*.js')
-//     .pipe(uglify())
-//     .pipe(concat())
-//     .pipe(rename())
-//     .pipe(gulp.dest('./dist/js'));
-// })
+gulp.task('js',()=>{
+    gulp.src('./src/js/*.js')
+    .pipe(uglify())
+    .pipe(concat())
+    .pipe(rename('es5.js'))
+    .pipe(gulp.dest('./dist/js'));
+})
 
 gulp.task('default',()=>{
     gulp.watch(['./src/scss/*.scss'],['sass']);
