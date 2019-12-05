@@ -23,7 +23,7 @@ gulp.task('index',()=>{
 gulp.task('product',()=>{
     gulp.src('./src/img/product/*.*')
     .pipe(imagemin())
-    .pipe(gulp.dest('../dist/img/product'));
+    .pipe(gulp.dest('./dist/img/product'));
 })  
 
 gulp.task('detail',()=>{
@@ -51,11 +51,8 @@ gulp.task('cart',()=>{
 })  
 
 gulp.task('js',()=>{
-    gulp.src('./src/js/*.js')
-    .pipe(uglify())
-    .pipe(concat())
-    .pipe(rename('es5.js'))
-    .pipe(gulp.dest('./dist/js'));
+    gulp.src('./src/js/es6/*.js')
+    .pipe(gulp.dest('./dist/js/es5'));
 })
 
 gulp.task('default',()=>{
@@ -66,5 +63,5 @@ gulp.task('default',()=>{
     gulp.watch(['./src/img/register/*.*'],['register']);
     gulp.watch(['./src/img/login/*.*'],['login']);
     gulp.watch(['./src/img/cart/*.*'],['cart']);
-    //gulp.watch(['./src/js/*.js'],['js']);
+    gulp.watch(['./src/js/es6/*.js'],['js']);
 })
